@@ -1,0 +1,1 @@
+insert into competitive_set values(null, 'Alakazam', 6, 0, 0, 252, 0,252, 'Psychic', 'Shadow Ball', 'Calm Mind', 'Focus Blast', 'Choice Specs', 'Timid');

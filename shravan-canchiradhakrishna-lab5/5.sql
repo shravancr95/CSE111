@@ -1,0 +1,2 @@
+--5.For parts of type STEEL, return the name of the supplier from AFRICA that can supply them at the minimum cost (ps supplycost). Return the supplier for each part size. Order the results by part size.
+SELECT supp, p_size from (SELECT  s_name as supp, min(ps_supplycost), p_size from part, supplier, partsupp,nation,region where p_type like '%STEEL%' and p_partkey = ps_partkey and s_suppkey = ps_suppkey and n_nationkey = s_nationkey and n_regionkey = r_regionkey and r_name = 'AFRICA' group by p_size);

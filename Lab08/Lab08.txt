@@ -1,0 +1,97 @@
+3. 
+customer->customer_index: .018 s
+INSERT INTO customer_index
+SELECT * FROM customer;
+
+customer->customer_noindex: .107 s
+INSERT INTO customer_noindex
+SELECT * FROM customer;
+
+Inserting with index seems to take more time than no index. 
+
+supplier->supplier_index: .007 s
+INSERT INTO supplier_index
+SELECT * FROM supplier;
+
+supplier->supplier_noindex: .005 s
+INSERT INTO supplier_noindex
+SELECT * FROM supplier;
+
+Insertion with index takes more time. 
+
+order->order_index: .086 s	
+INSERT INTO orders_index
+SELECT * FROM orders;
+
+order->order_noindex: .035 s
+INSERT INTO orders_noindex
+SELECT * FROM orders;
+
+Insertion with index seems to take more time. 
+
+lineitem->lineitem_index:.368 s
+INSERT INTO lineitem_index
+SELECT * FROM lineitem;
+
+lineitem->lineitem_noindex: .073 s
+INSERT INTO lineitem_noindex
+SELECT * FROM lineitem;
+
+Insertion with index seems to take more time. 
+
+4. 
+CREATE INDEX customer_nation_index ON customer_index (
+    c_nationkey
+);
+.016 s
+
+CREATE INDEX lineitem_returnflag_index ON lineitem_index (
+    l_returnflag
+)
+.098 s
+
+CREATE INDEX supplier_balance_index ON supplier_index (
+    s_acctbal
+);
+.106 s
+
+5. Lab 3 Queries
+
+1. customer_index: .004s customer_noindex: .004s They’re about the same
+2. supplier_index: .001s supplier_noindex: .001s They’re about the same
+3. lineitem_index = .108s lineitem_noindex = .009s No Index runs faster
+4. lineitem_index: 0.171s lineitem_noindex: 0.133 No Index runs faster
+5. customer_index: .107s customer_noindex: .103s No Index runs faster
+6. customer_index and order_index: .107s customer_noindex and order_noindex: .105s No Index runs faster
+7. lineitem_index, customer_index, orders_index: 0.164s lineitem_noindex, customer_noindex, orders_noindex: 0.137s No Index runs faster
+8. supplier_index: .004s supplier_noindex: .1s Index runs faster
+9. supplier_index: .007s supplier_noindex: .005s No Index runs faster
+10. orders_index, customer_index: .307s orders_noindex, customer_noindex: .061s No Index runs faster
+11. lineitem_index, customer_index, orders_index: .353s lineitem_noindex, customer_noindex, orders_noindex: .228 No Index runs faster
+12. orders_index, customer_index: .077s orders_noindex, customer_noindex: .162s Index runs faster
+13. customer_index: .007s customer_noindex: .002s No Index runs faster
+14. orders_index, customer_index: .044s orders_noindex, customer_noindex: .011s No Index runs faster
+15. orders_index, supplier_index, lineitem_index: .123s orders_noindex, supplier_noindex, lineitem_noindex: .245s In this case, index runs faster. 
+
+6.  
+update lineitem_index
+set l_discount = l_discount + 0.1;
+0.534s
+
+update lineitem_noindex
+set l_discount = l_discount + 0.1;
+0.265s
+
+Indexed table takes longer than the not indexed table
+
+7. 
+
+update supplier_index
+set s_acctbal = s_acctbal + 3000;
+0.008s
+
+update supplier_noindex
+set s_acctbal = s_acctbal + 3000;
+0.008s
+
+Both take about the same amount of time.

@@ -1,0 +1,2 @@
+--6. How many parts produced by each manufacturer in AMERICA are ordered at each priority?
+select count(distinct p_partkey), p_mfgr, o_orderpriority from   region, nation, supplier, lineitem, orders, part where  r_regionkey = n_regionkey AND n_nationkey = s_nationkey AND s_suppkey = l_suppkey AND l_partkey = p_partkey AND l_orderkey = o_orderkey AND r_name = 'AMERICA' group by  p_mfgr,o_orderpriority;

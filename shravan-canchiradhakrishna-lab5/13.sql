@@ -1,0 +1,2 @@
+--13. Count the number of orders ordered in the second quarter of 1996 in which at least one line item was received by the customer later than its committed date. List the count of such orders for each order priority sorted in ascending priority order.
+select count(*),o_orderpriority from orders where (o_orderdate like '1996-04-%' or o_orderdate like '1996-05-%'or o_orderdate like '1996-06-%') and exists (select * from lineitem where l_orderkey = o_orderkey and l_receiptdate > l_commitdate) group by o_orderpriority order by o_orderpriority;

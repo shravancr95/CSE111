@@ -1,0 +1,4 @@
+--Updates all the venusaurs to charizards
+update saved_teams
+set pkmn1 = 'Venusaur'
+where pkmn1 = 'Charizard';

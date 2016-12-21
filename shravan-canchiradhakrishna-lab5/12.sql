@@ -1,0 +1,2 @@
+12. What is the total supply cost for parts less expensive than $800 supplied in 1996 by suppliers who did not supply any part with an extended price less than 5000 in 1997 (l shipdate)?
+select sum(ps_supplycost) from partsupp where ps_partkey in (select l_partkey from lineitem where l_shipdate like '1996-%') and ps_supplycost < 800 and not ps_suppkey in (select l_suppkey from lineitem where l_shipdate like '1997-%' and l_extendedprice < 5000);

@@ -1,0 +1,2 @@
+--15. How many transactions involve customers and suppliers with positive balance? Count each transaction exactly once.
+SELECT count(*) from (SELECT distinct o_orderkey from customer, orders, lineitem, supplier where c_custkey = o_custkey and l_suppkey = s_suppkey and o_orderkey = l_orderkey and s_acctbal >= 0 and c_acctbal>=0);

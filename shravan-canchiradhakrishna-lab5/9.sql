@@ -1,0 +1,2 @@
+--9. Count the number of items that have total value (ps supplycost*ps availqty) in the top 3% value across all the items and are supplied by suppliers from EUROPE.
+select cast(round(0.03 * (select count(*) from (select distinct ps_partkey from partsupp,supplier,nation,region where ps_suppkey = s_suppkey and s_nationkey = n_nationkey and n_regionkey = r_regionkey and r_name = 'EUROPE')) + 0.5) as int);

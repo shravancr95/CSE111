@@ -1,0 +1,2 @@
+--This query picks out the best pokemon in the game that are good for defense and taking hits. This is purely based on stats of HP, Defense, Special Defense
+select * from Pokemon where base_hp >= 80 and base_def >= 90 and base_spdef >= 90;

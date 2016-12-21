@@ -1,0 +1,2 @@
+--1. Print the average amount of money spent on orders by each customer from BRAZIL.
+SELECT avg(o_totalprice), c_name FROM (SELECT o_totalprice, c_custkey, o_custkey, c_name FROM orders, customer, nation WHERE n_name = 'BRAZIL' AND orders.o_custkey = customer.c_custkey AND customer.c_nationkey = nation.n_nationkey) GROUP BY o_custkey;

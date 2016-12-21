@@ -1,0 +1,2 @@
+-- inserts a new team prompted by the user into the db
+insert into saved_teams values(null,'Blastoise', 'Scyther', 'Gyarados', 'Electabuzz', 'Magmar', 'Dragonite', 'My team when I played Pokemon Blue');

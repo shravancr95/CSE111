@@ -1,0 +1,3 @@
+select avg(c) from (select count(*) as c from (select distinct o_clerk, s_suppkey, n_name from orders, supplier, nation, lineitem where o_orderkey = l_orderkey  and l_suppkey = s_suppkey and s_nationkey = n_nationkey and n_name = 'CANADA') group by s_suppkey);
+
+select avg(c) from (select count(*) as c from (select distinct o_clerk, s_suppkey, n_name from Q5, Q2, lineitem where o_orderkey = l_orderkey  and l_suppkey = s_suppkey and n_name = 'CANADA') group by s_suppkey);

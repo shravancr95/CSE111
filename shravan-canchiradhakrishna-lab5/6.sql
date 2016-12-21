@@ -1,0 +1,2 @@
+--6. Based on the available quantity of items, who is the manufacturer of the least popular item (the least popular the more available items) from Supplier#000000052?
+select p_mfgr from (select p_mfgr, max(ps_availqty) from  supplier, part, partsupp where s_name =  'Supplier#000000052' and p_partkey = ps_partkey and ps_suppkey = s_suppkey);

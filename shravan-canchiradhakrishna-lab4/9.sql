@@ -1,0 +1,4 @@
+--9. What is the average number of clerks the suppliers in CANADA worked with?
+--SELECT * from (SELECT count(c_custkey), s_suppkey, n_name FROM customer, supplier, lineitem, orders, nation WHERE s_suppkey = l_suppkey and c_custkey = o_custkey and o_orderkey = l_orderkey and s_nationkey = n_nationkey and n_name = 'CANADA' group by s_suppkey) ;
+--SELECT count(o_custkey), s_suppkey from nation, supplier, lineitem, customer, orders, partsupp, part where n_name = 'CANADA' and s_nationkey = n_nationkey and l_suppkey = s_suppkey and s_suppkey = ps_suppkey and c_custkey = o_custkey and l_orderkey = o_orderkey and ps_partkey = l_partkey and p_partkey = ps_partkey group by s_suppkey;
+select avg(c) from (select count(*) as c from (select distinct o_clerk, s_suppkey, n_name from orders, supplier, nation, lineitem where o_orderkey = l_orderkey  and l_suppkey = s_suppkey and s_nationkey = n_nationkey and n_name = 'CANADA') group by s_suppkey);
